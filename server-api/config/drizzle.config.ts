@@ -5,7 +5,7 @@ dotenv.config();
 
 export default defineConfig({
   schema: './src/db/schema.db.ts',
-  out: './drizzle',
+  out: './src/db/migrations/drizzle',
   dialect: 'postgresql',
   dbCredentials: {
     url: process.env.DATABASE_URL!,
