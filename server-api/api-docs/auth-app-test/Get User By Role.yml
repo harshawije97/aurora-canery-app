@@ -1,0 +1,15 @@
+info:
+  name: Get User By Role
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{root}}/users/role/superadmin"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

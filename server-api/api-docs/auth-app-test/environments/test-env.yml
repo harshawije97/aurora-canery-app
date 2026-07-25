@@ -1,0 +1,4 @@
+name: test-env
+variables:
+  - name: root
+    value: http://localhost:3000

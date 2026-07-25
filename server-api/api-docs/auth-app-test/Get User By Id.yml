@@ -1,0 +1,16 @@
+info:
+  name: Get User By Id
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{root}}/users/4249581f-81a1-41bc-97b1-a8ff5b4180b7"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​
