@@ -1,0 +1,23 @@
+info:
+  name: Create Channels
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{root}}/channels/create"
+  body:
+    type: json
+    data: |-
+      {
+        "data": "Video data"
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MjQ5NTgxZi04MWExLTQxYmMtOTdiMS1hOGZmNWI0MTgwYjciLCJlbWFpbCI6ImhhcnNoYXdpamU5OUBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTc4NTA3NDg4NCwiZXhwIjoxNzg1MDc1Nzg0fQ.RLKmI9Y_xLVBF-hDJsrylkpR_0816U5ERDKPL1xZv-s
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
