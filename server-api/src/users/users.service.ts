@@ -59,7 +59,8 @@ export class UsersService {
     return await db
       .select()
       .from(users)
-      .where(eq(users.email, email as SQLWrapper<unknown>));
+      .where(eq(users.email, email as SQLWrapper<unknown>))
+      .limit(1);
   }
   // Get by role
   async getUserByRoleAsync(role: any) {
