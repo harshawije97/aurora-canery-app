@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   BadRequestException,
   Injectable,
@@ -5,43 +6,34 @@ import {
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { db } from 'src/db/connection.db';
-import { auth, users } from 'src/db/schema.db';
+import { users } from 'src/db/schema.db';
 import { eq, SQLWrapper } from 'drizzle-orm';
 import * as bcrypt from 'bcrypt';
+import { UserQueries } from 'src/db/queries/user.queries';
 
 @Injectable()
 export class UsersService {
+  /**
+   *
+   */
+  constructor(private readonly queries: UserQueries) {}
+
   // Create new user
   async createUserByAsync(createUser: CreateUserDTO) {
-    const response = await db
-      .select()
-      .from(users)
-      .where(eq(users.email, createUser.email));
-    if (response.length > 0) {
+    const response = await this.queries.getUserByEmailQuery(createUser.email);
+    if (response) {
       throw new BadRequestException('User already exists');
     }
     // Password hash
     const hashedPassword = await bcrypt.hash(createUser.password, 10);
 
     try {
-      return db.transaction(async (operation) => {
-        const [newUser] = await operation
-          .insert(users)
-          .values({
-            firstName: createUser.firstName,
-            lastName: createUser.lastName,
-            email: createUser.email,
-            role: createUser.role,
-          })
-          .returning();
+      const newUser = await this.queries.createUserQuery(
+        createUser,
+        hashedPassword,
+      );
 
-        await operation.insert(auth).values({
-          userId: newUser.id,
-          password: hashedPassword,
-        });
-
-        return newUser;
-      });
+      return newUser;
     } catch (error) {
       throw new InternalServerErrorException(error, 'Error creating user');
     }
