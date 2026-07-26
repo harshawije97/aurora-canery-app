@@ -4,16 +4,20 @@ import { db } from 'src/db/connection.db';
 import { auth } from 'src/db/schema.db';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   /**
    *
    */
-  constructor(private readonly userService: UsersService) {}
+  constructor(
+    private readonly userService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   //   verify user
-  async verifyUser(email: string, password: string) {
+  async verifyUser(email: string, password: string): Promise<any> {
     // get user by email
     const [user] = await this.userService.getUserByEmailAsync(email);
     if (!user) {
@@ -36,5 +40,20 @@ export class AuthService {
     }
 
     return user;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/require-await
+  async login(user: { id: string; email: string; role: string }) {
+    // Create payload
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    // Generate jwt token
+    return {
+      accessToken: this.jwtService.sign(payload),
+    };
   }
 }
