@@ -10,11 +10,11 @@ http:
     type: json
     data: |-
       {
-        "firstName": "Nadeesha",
-        "lastName": "Beneragama",
-        "email": "nadeesha@gmail.com",
-        "password": "Nan_user@123",
-        "role": "user"
+        "firstName": "Harshana",
+        "lastName": "Wijesinghe",
+        "email": "harshawije99@gmail.com",
+        "password": "super_admin@123",
+        "role": "superadmin"
       }
   auth: inherit
 
