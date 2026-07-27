@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { Bookmark } from "lucide-react"
 import React from "react"
 import PreviewCard from "./preview-card"
 

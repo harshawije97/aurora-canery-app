@@ -1,6 +1,6 @@
 "use client"
 
-import { PanelLeft, PanelLeftClose, PlayCircle, SquarePlay } from "lucide-react"
+import { PanelLeft, PanelLeftClose, SquarePlay } from "lucide-react"
 import React from "react"
 import { LESSONS } from "../page"
 
