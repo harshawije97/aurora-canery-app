@@ -3,112 +3,126 @@
 
 import { Bookmark } from "lucide-react"
 import React from "react"
+import PreviewCard from "./preview-card"
 
 // Dummy data
-const modules: any = [
+export const MODULES_DATA: any = [
   {
     id: 1,
-    isSkeleton: true, // First item is represented as a structured skeleton placeholder card
+    title: "Procurement & Strategic Sourcing",
+    category: "Operations",
+    description:
+      "Master tendering, vendor evaluation, quotation analysis, and end-to-end purchasing workflows.",
+    lessonsCount: 12,
+    duration: "4.5 hrs",
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 2,
-    title: "Procurement",
-    description: "Purchasing, tendering, quotation calling and process",
-    bookmarked: false,
+    title: "Administration & Human Resources Management",
+    category: "HR & Management",
+    description:
+      "Comprehensive guide to corporate administration, personnel record management, and onboarding compliance.",
+    lessonsCount: 18,
+    duration: "6.0 hrs",
+    rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 3,
-    title: "Administration & HRM",
-    description: "HR, administration, requirements, Personal Files",
-    bookmarked: false,
+    title: "Financial Governance & Budgeting",
+    category: "Finance",
+    description:
+      "Learn financial reporting, budget oversight, auditing procedures, and fiscal risk management.",
+    lessonsCount: 9,
+    duration: "3.2 hrs",
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 4,
-    title: "Procurement",
-    description: "Purchasing, tendering, quotation calling and process",
-    bookmarked: false,
+    title: "Supply Chain & Logistics Management",
+    category: "Logistics",
+    description:
+      "Optimize inventory control, warehousing operations, distribution networks, and freight handling.",
+    lessonsCount: 15,
+    duration: "5.5 hrs",
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 5,
-    title: "Procurement",
-    description: "Purchasing, tendering, quotation calling and process",
-    bookmarked: false,
+    title: "IT Infrastructure & Security Compliance",
+    category: "Technology",
+    description:
+      "Ensure enterprise software security standards, digital asset management, and IT policy alignment.",
+    lessonsCount: 10,
+    duration: "4.0 hrs",
+    rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1510511459019-5dee997dd1db?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 6,
-    title: "Procurement",
-    description: "Purchasing, tendering, quotation calling and process",
-    bookmarked: false,
+    title: "Legal Risk & Contract Lifecycle Management",
+    category: "Legal",
+    description:
+      "Understand contract drafting, liability clauses, dispute resolution, and regulatory compliance.",
+    lessonsCount: 14,
+    duration: "5.0 hrs",
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop",
   },
 ]
 
 function ModulePreviewCards() {
+  const [isLoading, setIsLoading] = React.useState<boolean>(true)
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {modules.map((module: any) => {
-        if (module.isSkeleton) {
-          return (
-            /* Card 1: Skeleton Box Layout */
+      {isLoading
+        ? Array.from({ length: 6 }).map((_, index) => (
             <div
-              key={module.id}
-              className="space-y-4 rounded-2xl border border-[#F2F2F2] bg-[#FFFFFF] p-5"
+              key={index}
+              className="flex animate-pulse flex-col justify-between overflow-hidden rounded-2xl border border-[#F2F2F2] bg-[#FFFFFF]"
             >
-              <div className="h-36 w-full rounded-xl bg-[#F2F2F2]" />
-              <div className="space-y-2.5 pt-1">
-                <div className="h-7 w-full rounded-md bg-[#F2F2F2]" />
-                <div className="h-4 w-full rounded-md bg-[#F2F2F2]" />
-                <div className="h-4 w-full rounded-md bg-[#F2F2F2]" />
-                <div className="h-4 w-full rounded-md bg-[#F2F2F2]" />
-                <div className="h-4 w-3/4 rounded-md bg-[#F2F2F2]" />
+              <div>
+                {/* Image Placeholder Skeleton */}
+                <div className="h-48 w-full bg-[#F2F2F2]" />
+                {/* Content Skeletons */}
+                <div className="space-y-3 p-5">
+                  <div className="h-4 w-20 rounded-full bg-[#F2F2F2]" />
+                  <div className="h-5 w-4/5 rounded-md bg-[#F2F2F2]" />
+                  <div className="space-y-2 pt-1">
+                    <div className="h-3 w-full rounded-md bg-[#F2F2F2]" />
+                    <div className="h-3 w-3/4 rounded-md bg-[#F2F2F2]" />
+                  </div>
+                </div>
+              </div>
+              {/* Footer Skeleton */}
+              <div className="mt-4 flex items-center justify-between border-t border-[#F2F2F2]/60 px-5 pt-2 pb-5">
+                <div className="h-4 w-24 rounded-md bg-[#F2F2F2]" />
+                <div className="h-8 w-24 rounded-lg bg-[#F2F2F2]" />
               </div>
             </div>
-          )
-        }
-
-        return (
-          /* Standard Module Cards */
-          <div
-            key={module.id}
-            className="flex flex-col justify-between rounded-2xl border border-[#F2F2F2] bg-[#FFFFFF] p-1 pb-6 transition-all hover:shadow-sm"
-          >
-            <div>
-              {/* Image Placeholder with Bookmark Icon */}
-              {/* <div className="relative mb-5 h-36 w-full rounded-xl bg-[#F2F2F2] p-3">
-                <button
-                  onClick={() => toggleBookmark(module.id)}
-                  className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg border border-[#F2F2F2] bg-[#FFFFFF] transition-colors hover:bg-gray-50"
-                  aria-label="Bookmark"
-                >
-                  <Bookmark
-                    className={`h-4 w-4 ${
-                      bookmarks[module.id]
-                        ? "fill-[#DA1249] text-[#DA1249]"
-                        : "text-[#222222]"
-                    }`}
-                  />
-                </button>
-              </div> */}
-
-              {/* Module Text Content */}
-              <div className="space-y-2 px-5">
-                <h2 className="text-lg font-bold text-[#222222]">
-                  {module.title}
-                </h2>
-                <p className="line-clamp-2 text-xs leading-relaxed text-[#5C5C5C]">
-                  {module.description}
-                </p>
-              </div>
-            </div>
-
-            {/* Action Button */}
-            <div className="px-5 pt-6">
-              <button className="rounded-lg bg-[#DA1249] px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors duration-150 hover:bg-[#b80e3a]">
-                Start Module
-              </button>
-            </div>
-          </div>
-        )
-      })}
+          ))
+        : MODULES_DATA.map((module: any) => (
+            <PreviewCard module={module} key={module.id} />
+          ))}
     </div>
   )
 }
