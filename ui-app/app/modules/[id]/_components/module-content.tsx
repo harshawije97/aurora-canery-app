@@ -2,7 +2,18 @@
 
 import React from "react"
 import ModuleContentWrapper from "./module-content-wrapper"
-import { Bookmark, CheckCircle2, Clock, Download, FileText, Share2, Sparkles, Star, User } from "lucide-react"
+import {
+  Bookmark,
+  CheckCircle2,
+  Clock,
+  Download,
+  FileText,
+  Share2,
+  Sparkles,
+  Star,
+  User,
+} from "lucide-react"
+import VideoFrame from "./video-frame"
 
 function ModuleContent() {
   const [isBookmarked, setIsBookmarked] = React.useState(false)
@@ -14,22 +25,14 @@ function ModuleContent() {
       <div className="w-full space-y-6">
         {/* Video Placeholder Container */}
         <div className="relative w-full overflow-hidden rounded-2xl border border-[#F2F2F2] bg-[#18181B] shadow-xl shadow-black/5 transition-all duration-300">
-          <div className="relative aspect-video w-full overflow-hidden">
-            <iframe
-              className="absolute top-0 left-0 h-full w-full border-0"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="Lesson Video Player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
+          <VideoFrame videoUrl="" />
         </div>
       </div>
 
       {/* Lesson Information Section */}
       <div className="space-y-6 pt-1">
         <div className="flex flex-col gap-4 border-b border-[#F2F2F2] pb-6 sm:flex-row sm:items-start sm:justify-between">
-          <div className="max-w-3xl space-y-2.5">
+          <div className="max-w-4xl space-y-2.5">
             {/* Title card */}
             <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#5C5C5C]">
               <span className="rounded-full bg-[#DA1249]/10 px-3 py-1 font-semibold text-[#DA1249]">
@@ -49,7 +52,7 @@ function ModuleContent() {
             </div>
             {/* Main Lesson Title */}
             <h1 className="text-2xl font-bold tracking-tight text-[#222222] sm:text-3xl">
-              Lesson 01: How to create new procurement entry
+              Lesson 01: Waripanam additional debit and credit changes with authorization
             </h1>
             {/* Author / Instructor Info */}
             <div className="flex items-center gap-2 pt-1 text-xs text-[#5C5C5C]">
